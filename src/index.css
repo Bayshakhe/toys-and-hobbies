@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.activeList{
+   @apply underline font-bold text-rose-600
+}
+.btn-outline-rose{
+    @apply border border-rose-600 py-1 px-3 font-semibold text-rose-600 rounded-md hover:bg-rose-600 hover:text-white
+}
