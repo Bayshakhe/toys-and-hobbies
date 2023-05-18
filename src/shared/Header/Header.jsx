@@ -1,6 +1,17 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProviders";
 
 const Header = () => {
+  const { user, logout } = useContext(AuthContext);
+  // console.log(user);
+
+  const handleLogout = () => {
+    logout()
+      .then(() => {})
+      .catch((err) => console.log(err));
+  };
+
   const navLinkList = (
     <>
       <NavLink
@@ -15,18 +26,22 @@ const Header = () => {
       >
         All Toys
       </NavLink>
-      <NavLink
-        to="/myToys"
-        className={({ isActive }) => (isActive ? "activeList" : "")}
-      >
-        My Toys
-      </NavLink>
-      <NavLink
-        to="/addToys"
-        className={({ isActive }) => (isActive ? "activeList" : "")}
-      >
-        Add a Toys
-      </NavLink>
+      {user && (
+        <>
+          <NavLink
+            to="/myToys"
+            className={({ isActive }) => (isActive ? "activeList" : "")}
+          >
+            My Toys
+          </NavLink>
+          <NavLink
+            to="/addToys"
+            className={({ isActive }) => (isActive ? "activeList" : "")}
+          >
+            Add a Toys
+          </NavLink>
+        </>
+      )}
       <NavLink
         to="/blogs"
         className={({ isActive }) => (isActive ? "activeList" : "")}
@@ -81,7 +96,23 @@ const Header = () => {
         </div>
       </div>
 
-      <button className="btn-outline-rose mr-4">Login</button>
+      {user ? (
+        <div>
+          <img
+            className="rounded-full w-12 mr-3"
+            src={user.photoURL}
+            alt="Profile Image"
+            title={user.displayName}
+          />
+          <Link onClick={handleLogout} className="btn-outline-rose mr-4 pt-3">
+            Log out
+          </Link>
+        </div>
+      ) : (
+        <Link to="/login" className="btn-outline-rose mr-4">
+          Log in
+        </Link>
+      )}
     </div>
   );
 };
