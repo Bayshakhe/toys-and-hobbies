@@ -4,7 +4,7 @@ import { AuthContext } from "../../providers/AuthProviders";
 const Viewdetails = () => {
     const {singletoyData} = useContext(AuthContext)
     const {name, picture, price, quantity, rating, seller, subcategory} = singletoyData
-    console.log(singletoyData)
+    // console.log(singletoyData)
   return (
     <div>
       <input type="checkbox" id="my-modal-5" className="modal-toggle" />

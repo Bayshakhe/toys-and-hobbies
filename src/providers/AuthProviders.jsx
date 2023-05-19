@@ -4,7 +4,7 @@ import { createContext, useEffect, useState } from "react";
 
 export const AuthContext = createContext();
 
-const AuthProviders = ({ children }) => {
+const AuthProviders = ( {children} ) => {
   const auth = getAuth(app);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);

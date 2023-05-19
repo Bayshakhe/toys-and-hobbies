@@ -4,7 +4,7 @@ import "./index.css";
 import { RouterProvider } from "react-router-dom";
 import router from "./routes/Routes";
 import AuthProviders from "./providers/AuthProviders";
-import { Toaster } from 'react-hot-toast';
+import { Toaster } from "react-hot-toast";
 import Viewdetails from "./pages/ViewDetails/Viewdetails";
 import PrivateRoute from "./routes/PrivateRoute";
 
@@ -13,7 +13,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <AuthProviders>
       <RouterProvider router={router} />
       <Toaster />
-      <PrivateRoute><Viewdetails></Viewdetails></PrivateRoute>
+      <PrivateRoute>
+        <Viewdetails></Viewdetails>
+      </PrivateRoute>
     </AuthProviders>
   </React.StrictMode>
 );
