@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import Select from "react-select";
 import { AuthContext } from "../../providers/AuthProviders";
+import toast from 'react-hot-toast';
 
 const AddAToy = () => {
     const {user} = useContext(AuthContext)
@@ -9,8 +10,6 @@ const AddAToy = () => {
   const {
     register,
     handleSubmit,
-    watch,
-    formState: { errors },
   } = useForm();
 
   const options = [
@@ -23,6 +22,20 @@ const AddAToy = () => {
   const handleAddToy = (data, event) => {
     event.preventDefault()
     console.log(data);
+    fetch('https://toys-and-hobbies-server.vercel.app/toys',{
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(data => {
+        // console.log(34, data)
+        if(data?.insertedId){
+            toast.success('Successfully added your Toy');
+        }
+    })
 
   };
 
