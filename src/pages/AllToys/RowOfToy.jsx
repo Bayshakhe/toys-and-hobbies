@@ -7,11 +7,11 @@ const RowOfToy = ({toy,i}) => {
     <tr>
       <th>{i}</th>
       <td>
-        <p>Name: {seller.name}</p>
-        <p>Email: {seller.email}</p>
+        <p><span className="font-semibold">Name:</span> {seller.name}</p>
+        <p><span className="font-semibold">Email:</span> {seller.email}</p>
       </td>
       <td>{name}</td>
-      <td>{subcategory}</td>
+      <td className="font-semibold">{subcategory}</td>
       <td>{price}</td>
       <td >{quantity}</td>
       <td >

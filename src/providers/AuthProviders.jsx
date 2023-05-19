@@ -8,6 +8,7 @@ const AuthProviders = ({ children }) => {
   const auth = getAuth(app);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [toysData, setToysData] = useState([]);
   const googleProvider = new GoogleAuthProvider()
 
 
@@ -42,6 +43,15 @@ const AuthProviders = ({ children }) => {
     }
   },[])
 
+  
+  useEffect(() => {
+    fetch("https://toys-and-hobbies-server.vercel.app/toys")
+      .then((res) => res.json())
+      .then((data) => {
+        setToysData(data);
+      });
+  }, []);
+
   const logout = () => {
     return signOut(auth)
   }
@@ -54,6 +64,7 @@ const AuthProviders = ({ children }) => {
     loading,
     logout,
     googleLogin,
+    toysData,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

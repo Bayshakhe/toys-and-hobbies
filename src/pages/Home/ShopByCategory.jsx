@@ -1,8 +1,17 @@
 
+import { useContext, useEffect } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import { AuthContext } from "../../providers/AuthProviders";
 
 const ShopByCategory = () => {
+  const {toysData} = useContext(AuthContext);
+  // console.log(toysData[3]?.subcategory)
+  useEffect(()=> {
+    fetch(`http://localhost:5000/toys/Board Games`)
+    .then(res => res.json())
+    .then(data => console.log(data))
+  },[])
   
   return (
     <div className="container mx-auto my-10">

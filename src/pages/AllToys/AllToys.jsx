@@ -1,16 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import RowOfToy from "./RowOfToy";
+import { AuthContext } from "../../providers/AuthProviders";
 
 const AllToys = () => {
-  const [toysData, setToysData] = useState([]);
-  
-  useEffect(() => {
-    fetch("https://toys-and-hobbies-server-bayshakhe.vercel.app/toys")
-      .then((res) => res.json())
-      .then((data) => {
-        setToysData(data);
-      });
-  }, []);
+  const {toysData} = useContext(AuthContext)
 
   return (
     <div className="container mx-auto">
