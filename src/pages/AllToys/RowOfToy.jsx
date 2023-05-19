@@ -12,7 +12,7 @@ const RowOfToy = ({toy,i}) => {
       </td>
       <td>{name}</td>
       <td className="font-semibold">{subcategory}</td>
-      <td>{price}</td>
+      <td>${price}</td>
       <td >{quantity}</td>
       <td >
         <Link className="btn btn-outline btn-outline-rose normal-case">See Details</Link>
