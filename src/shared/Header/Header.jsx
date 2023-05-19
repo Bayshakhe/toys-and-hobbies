@@ -29,13 +29,13 @@ const Header = () => {
       {user && (
         <>
           <NavLink
-            to="/myToys"
+            to="/myToy"
             className={({ isActive }) => (isActive ? "activeList" : "")}
           >
             My Toys
           </NavLink>
           <NavLink
-            to="/addToys"
+            to="/addToy"
             className={({ isActive }) => (isActive ? "activeList" : "")}
           >
             Add a Toys

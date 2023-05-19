@@ -1,7 +1,7 @@
-import Banner from "./Banner";
-import Gallery from "./Gallery";
-import GetUpdate from "./GetUpdate";
-import ShopByCategory from "./ShopByCategory";
+import Banner from "../Banner/Banner";
+import Gallery from "../Gallery/Gallery";
+import GetUpdate from "../GetUpdate/GetUpdate";
+import ShopByCategory from "../ShopByCategory/ShopByCategory";
 
 const Home = () => {
     return (

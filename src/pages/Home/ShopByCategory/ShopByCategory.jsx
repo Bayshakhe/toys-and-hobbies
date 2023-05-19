@@ -1,16 +1,15 @@
 
-import { useContext, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import { AuthContext } from "../../providers/AuthProviders";
 
 const ShopByCategory = () => {
-  const {toysData} = useContext(AuthContext);
+  const [boardGames, setBoardGames] = useState([])
   // console.log(toysData[3]?.subcategory)
   useEffect(()=> {
     fetch(`http://localhost:5000/toys/Board Games`)
     .then(res => res.json())
-    .then(data => console.log(data))
+    .then(data => setBoardGames(data))
   },[])
   
   return (
@@ -27,7 +26,9 @@ const ShopByCategory = () => {
         </TabList>
 
         <TabPanel>
-          <h2>Any content 1</h2>
+          {/* {
+            boardGames.map(data => )
+          } */}
         </TabPanel>
         <TabPanel>
           <h2>Any content 2</h2>
