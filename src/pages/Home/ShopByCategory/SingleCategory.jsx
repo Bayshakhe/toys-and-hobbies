@@ -1,6 +1,6 @@
 const SingleCategory = ({ data }) => {
   const { _id, picture, name, price, rating } = data;
-  console.log(data);
+//   console.log(data);
   return (
     <div className="card bg-base-100 shadow-xl m-5">
       <figure>
