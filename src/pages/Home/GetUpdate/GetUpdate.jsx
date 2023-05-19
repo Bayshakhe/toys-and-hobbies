@@ -17,6 +17,7 @@ const GetUpdate = () => {
           <input
             type="email"
             name='email'
+            required
             placeholder="Your Email"
             className="input input-bordered w-full max-w-xs text-black"
           />

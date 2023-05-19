@@ -1,24 +1,32 @@
+import { useContext } from "react";
+import { AuthContext } from "../../../providers/AuthProviders";
+
 const SingleCategory = ({ data }) => {
   const { _id, picture, name, price, rating } = data;
-//   console.log(data);
+  const { handleViewDetails } = useContext(AuthContext);
+  //   console.log(data);
   return (
-    <div className="card bg-base-100 shadow-xl m-5">
-      <figure>
-        <img
-        className=" h-[300px]"
-          src={picture}
-          alt="Toys"
-        />
-      </figure>
-      <div className="card-body text-left">
-        <h2 className="card-title text-2xl">{name}</h2>
-        <p className="text-rose-600 font-semibold">Price: ${price}</p>
-        <p className="font-semibold">Rating: {rating}</p>
-        <div className="card-actions justify-end">
-          <button className="btn btn-outline btn-outline-rose">View Details</button>
+    <>
+      <div className="card bg-base-100 shadow-xl m-5">
+        <figure>
+          <img className=" h-[300px]" src={picture} alt="Toys" />
+        </figure>
+        <div className="card-body text-left">
+          <h2 className="card-title text-2xl">{name}</h2>
+          <p className="text-rose-600 font-semibold">Price: ${price}</p>
+          <p className="font-semibold">Rating: {rating}</p>
+          <div className="card-actions justify-end">
+            <label
+              onClick={() => handleViewDetails(_id)}
+              htmlFor="my-modal-5"
+              className="normal-case btn btn-outline btn-outline-rose"
+            >
+              View Details
+            </label>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

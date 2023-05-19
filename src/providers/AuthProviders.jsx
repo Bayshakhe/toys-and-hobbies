@@ -9,6 +9,7 @@ const AuthProviders = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [toysData, setToysData] = useState([]);
+  const [singletoyData, setSingleToyData] = useState([]);
   const googleProvider = new GoogleAuthProvider()
 
 
@@ -42,7 +43,6 @@ const AuthProviders = ({ children }) => {
         return unsubscribe()
     }
   },[])
-
   
   useEffect(() => {
     fetch("https://toys-and-hobbies-server.vercel.app/toys")
@@ -51,6 +51,14 @@ const AuthProviders = ({ children }) => {
         setToysData(data);
       });
   }, []);
+
+  const handleViewDetails = (id) => {
+      fetch(`https://toys-and-hobbies-server.vercel.app/toy/${id}`)
+      .then(res => res.json())
+      .then(data => {
+        setSingleToyData(data)
+      })
+  }
 
   const logout = () => {
     return signOut(auth)
@@ -65,6 +73,8 @@ const AuthProviders = ({ children }) => {
     logout,
     googleLogin,
     toysData,
+    handleViewDetails,
+    singletoyData,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
