@@ -13,6 +13,7 @@ import MyToy from "../pages/MyToy/MyToy";
 import AddAToy from "../pages/AddAToy/AddAToy";
 import PrivateRoute from "./PrivateRoute";
 import Viewdetails from "../pages/ViewDetails/Viewdetails";
+import UpdateToy from "../pages/UpdateToy/UpdateToy";
 
   const router = createBrowserRouter([
     {
@@ -52,6 +53,11 @@ import Viewdetails from "../pages/ViewDetails/Viewdetails";
             path:'/viewDetails/:id',
             element: <PrivateRoute><Viewdetails></Viewdetails></PrivateRoute>,
             loader: ({params})=> fetch(`https://toys-and-hobbies-server.vercel.app/toy/${params.id}`)
+        },
+        {
+          path: '/update-toy/:id',
+          element: <PrivateRoute><UpdateToy></UpdateToy></PrivateRoute>,
+          loader: ({ params }) => fetch(`https://toys-and-hobbies-server.vercel.app/toy/${params.id}`)
         },
       ]
     },

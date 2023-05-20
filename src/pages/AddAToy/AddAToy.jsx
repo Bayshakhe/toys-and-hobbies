@@ -142,13 +142,19 @@ const AddAToy = () => {
               <span className="label-text font-semibold">Select Sub Category</span>
             </label>
             <label className="input-group">
-            <Select
+            {/* <Select
               defaultValue={selectedOption}
               {...register("subcategory")}
               required
               onChange={setSelectedOption}
               options={options}
-            />
+            /> */}
+            <select {...register("subcategory")} id="">
+              <option value="Board Games">Board Games</option>
+              <option value="Puzzles">Puzzles</option>
+              <option value="Card Games">Card Games</option>
+              <option value="Cube Fidget Toy">Cube Fidget Toy</option>
+            </select>
             </label>
           </div>
           <div className="form-control md:w-1/2">

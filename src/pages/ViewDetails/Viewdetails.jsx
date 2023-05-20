@@ -3,7 +3,7 @@ import { useLoaderData } from "react-router-dom";
 const Viewdetails = () => {
   // const {singletoyData} = useContext(AuthContext)
   const singletoyData = useLoaderData();
-  const { name, picture, price, quantity, rating, seller, subcategory } =
+  const { name, picture, price, quantity, rating, seller, subcategory, description } =
     singletoyData;
   // console.log(singletoyData)
   return (
@@ -23,6 +23,10 @@ const Viewdetails = () => {
         <p>
           <span className="font-semibold">Available Quantity: </span>
           {quantity}
+        </p>
+        <p>
+          <span className="font-semibold">Description: </span>
+          {description}
         </p>
         <p>
           <span className="font-semibold">Rating: </span>
