@@ -8,7 +8,7 @@ const Viewdetails = () => {
   // console.log(singletoyData)
   return (
     <div className="m-5 md:w-3/4 md:mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-8">
-      <img className="rounded-xl" src={picture} alt="Product Image" />
+      <img className="rounded-xl " src={picture} alt="Product Image" />
       <div>
         <h5 className="text-3xl font-bold mb-2">{name}</h5>
         <p className="text-lg font-bold">{subcategory}</p>

@@ -1,18 +1,16 @@
-import { useContext } from "react";
-import { AuthContext } from "../../providers/AuthProviders";
+import { Link } from "react-router-dom";
 
 const RowOfToy = ({ toy, i }) => {
   const { _id, name, price, quantity, seller, subcategory } = toy;
-  const {handleViewDetails} = useContext(AuthContext)
   return (
     <tr>
       <th>{i}</th>
       <td>
         <p>
-          <span className="font-semibold">Name:</span> {seller.name}
+          <span className="font-semibold">Name:</span> {seller?.name}
         </p>
         <p>
-          <span className="font-semibold">Email:</span> {seller.email}
+          <span className="font-semibold">Email:</span> {seller?.email}
         </p>
       </td>
       <td>{name}</td>
@@ -20,13 +18,12 @@ const RowOfToy = ({ toy, i }) => {
       <td>${price}</td>
       <td>{quantity}</td>
       <td>
-        <label
-          onClick={() => handleViewDetails(_id)}
-          htmlFor="my-modal-5"
+        <Link
+          to={`/viewDetails/${_id}`}
           className="normal-case btn btn-outline btn-outline-rose"
         >
           View Details
-        </label>
+        </Link>
       </td>
     </tr>
   );

@@ -1,7 +1,7 @@
 import { Player } from "@lottiefiles/react-lottie-player";
 import loginImage from "../../../public/login.json";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProviders";
 
@@ -9,6 +9,8 @@ const Login = () => {
   const {login,googleLogin} = useContext(AuthContext)
   const [error, setError] = useState('')
   const navigate = useNavigate()
+  const location = useLocation()
+  const from = location?.state?.from?.pathname || '/'
   const {
     register,
     handleSubmit,
@@ -22,7 +24,7 @@ const Login = () => {
     login(data.email, data.password)
     .then(result => {
       console.log(result.user)
-      navigate('/')
+      navigate(from, {replace:true})
     })
     .then(error => {
       console.log(error.message)
@@ -34,6 +36,7 @@ const Login = () => {
     googleLogin()
     .then(result => {
       console.log(result.user)
+      navigate(from, {replace:true})
     })
     .catch(err => console.log(err))
   }
