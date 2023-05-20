@@ -1,4 +1,7 @@
 import { useContext, useEffect, useState } from "react";
+// import Swal from 'sweetalert2/dist/sweetalert2.js'
+// import 'sweetalert2/src/sweetalert2.scss'
+import Swal from 'sweetalert2'
 
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
@@ -10,21 +13,34 @@ const MyToy = () => {
   console.log(myToys);
 
   const handleDelete = (id) => {
-    const proceed = confirm("Are you sure to delete");
-    if (proceed) {
-      fetch(`https://toys-and-hobbies-server.vercel.app/toy/${id}`, {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`https://toys-and-hobbies-server.vercel.app/toy/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
           if (data.deletedCount > 0) {
-            alert("Deleted successfully");
+            Swal.fire(
+              'Deleted!',
+              'Your file has been deleted.',
+              'success'
+            )
             const remaining = myToys.filter((toys) => toys._id !== id);
             setMyToys(remaining);
           }
-        });
-    }
+        })
+      }
+    })
   };
 
   const url = `https://toys-and-hobbies-server.vercel.app/my-toys?email=${user?.email}`;
@@ -64,8 +80,8 @@ const MyToy = () => {
                 </th>
                 <td>{toy.name}</td>
                 <td>{toy.SellerEmail}</td>
-                <td>$ {toy.subcategory}</td>
-                <td>{toy.price}</td>
+                <td>{toy.subcategory}</td>
+                <td>$ {toy.price}</td>
                 <td>{toy.quantity}</td>
                 <td className="space-x-1">
                   <Link
