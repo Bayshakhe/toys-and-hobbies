@@ -1,9 +1,7 @@
-import { useContext } from "react";
-import { AuthContext } from "../../../providers/AuthProviders";
+import { Link } from "react-router-dom";
 
 const SingleCategory = ({ data }) => {
   const { _id, picture, name, price, rating } = data;
-  const { handleViewDetails } = useContext(AuthContext);
   //   console.log(data);
   return (
     <>
@@ -16,13 +14,12 @@ const SingleCategory = ({ data }) => {
           <p className="text-rose-600 font-semibold">Price: ${price}</p>
           <p className="font-semibold">Rating: {rating}</p>
           <div className="card-actions justify-end">
-            <label
-              onClick={() => handleViewDetails(_id)}
-              htmlFor="my-modal-5"
+            <Link to={`/viewDetails/${_id}`}
+              
               className="normal-case btn btn-outline btn-outline-rose"
             >
               View Details
-            </label>
+            </Link>
           </div>
         </div>
       </div>

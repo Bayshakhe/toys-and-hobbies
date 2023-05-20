@@ -10,22 +10,22 @@ const ShopByCategory = () => {
   const [CubeGames, setCubeGames] = useState([]);
   // console.log(toysData[3]?.subcategory)
   useEffect(() => {
-    fetch(`http://localhost:5000/toys/Board Games`)
+    fetch(`https://toys-and-hobbies-server.vercel.app/toys/Board Games`)
       .then((res) => res.json())
       .then((data) => setBoardGames(data));
   }, []);
   useEffect(() => {
-    fetch(`http://localhost:5000/toys/Puzzles`)
+    fetch(`https://toys-and-hobbies-server.vercel.app/toys/Puzzles`)
       .then((res) => res.json())
       .then((data) => setPuzzleGames(data));
   }, []);
   useEffect(() => {
-    fetch(`http://localhost:5000/toys/Card Games`)
+    fetch(`https://toys-and-hobbies-server.vercel.app/toys/Card Games`)
       .then((res) => res.json())
       .then((data) => setCardGames(data));
   }, []);
   useEffect(() => {
-    fetch(`http://localhost:5000/toys/Cube Fidget Toy`)
+    fetch(`https://toys-and-hobbies-server.vercel.app/toys/Cube Fidget Toy`)
       .then((res) => res.json())
       .then((data) => setCubeGames(data));
   }, []);

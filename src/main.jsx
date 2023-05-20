@@ -13,9 +13,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <AuthProviders>
       <RouterProvider router={router} />
       <Toaster />
-      <PrivateRoute>
+      {/* <PrivateRoute>
         <Viewdetails></Viewdetails>
-      </PrivateRoute>
+      </PrivateRoute> */}
     </AuthProviders>
   </React.StrictMode>
 );
