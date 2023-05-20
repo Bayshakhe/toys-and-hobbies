@@ -1,23 +1,15 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import Select from "react-select";
 import { AuthContext } from "../../providers/AuthProviders";
 import toast from 'react-hot-toast';
 
 const AddAToy = () => {
     const {user} = useContext(AuthContext)
-  const [selectedOption, setSelectedOption] = useState(null);
   const {
     register,
     handleSubmit,
   } = useForm();
 
-  const options = [
-    { value: "Board Games", label: "Board Games" },
-    { value: "Puzzles", label: "Puzzles" },
-    { value: "Card Games", label: "Card Games" },
-    { value: "Cube Fidget Toy", label: "Cube Fidget Toy" },
-  ];
 
   const handleAddToy = (data, event) => {
     event.preventDefault()
@@ -34,6 +26,7 @@ const AddAToy = () => {
         // console.log(34, data)
         if(data?.insertedId){
             toast.success('Successfully added your Toy');
+            event.target.reset()
         }
     })
 
