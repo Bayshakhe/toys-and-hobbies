@@ -51,11 +51,40 @@ const MyToy = () => {
       .then((data) => setMyToys(data));
   }, [url]);
 
+  const [sortOrder, setSortOrder] = useState(null);
+    useEffect(() => {
+        filterData();
+    }, [sortOrder]);
+
+
+    const filterData = () => {
+        let filtered = [...myToys];
+
+        if (sortOrder === 'ascending') {
+            filtered.sort((a, b) => a.price - b.price);
+        } else if (sortOrder === 'descending') {
+            filtered.sort((a, b) => b.price - a.price);
+        }
+
+        setMyToys(filtered);
+    };
+
+    const handleSortClick = () => {
+        if (sortOrder === 'ascending') {
+            setSortOrder('descending');
+        } else {
+            setSortOrder('ascending');
+        }
+    };
+
   return (
     <div className="w-11/12 mx-auto">
       <h2 className="font-bold text-4xl text-center my-12 md:my-16 underline">
         My Toys
       </h2>
+      <div className="flex justify-center">
+                <button onClick={handleSortClick} className="btn btn-accent mb-4 md:mb-8">Sort {sortOrder === 'ascending' ? 'Descending' : 'Ascending'}</button>
+            </div>
       <div className="overflow-x-auto mb-8">
         <table className="table w-full">
           {/* head */}
