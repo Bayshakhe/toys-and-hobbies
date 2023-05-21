@@ -3,11 +3,21 @@ import RowOfToy from "./RowOfToy";
 import { AuthContext } from "../../providers/AuthProviders";
 
 const AllToys = () => {
-  const {toysData} = useContext(AuthContext)
+  const { toysData } = useContext(AuthContext);
 
   return (
     <div className="container mx-auto">
       <div className="overflow-x-auto">
+        <div className="w-full md:w-[20%] mx-auto my-5">
+          <label className="input-group ">
+            <input
+              type="text"
+              placeholder="Search your Toy"
+              className="input input-bordered"
+            />
+            <button className="btn">Search</button>
+          </label>
+        </div>
         <table className="table w-full">
           {/* head */}
           <thead>
@@ -22,8 +32,8 @@ const AllToys = () => {
             </tr>
           </thead>
           <tbody>
-            {toysData.map((toy,i) => (
-              <RowOfToy key={toy._id} toy={toy} i={i+1}></RowOfToy>
+            {toysData.map((toy, i) => (
+              <RowOfToy key={toy._id} toy={toy} i={i + 1}></RowOfToy>
             ))}
           </tbody>
         </table>

@@ -16,7 +16,9 @@ const Gallery = () => {
         {img: 'https://images.unsplash.com/photo-1540149678796-1a36342a1372?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80', alt:'Gallery Image'},
     ]
   return (
-    <div className="container mx-auto my-10">
+    <div data-aos="flip-left"
+    data-aos-easing="ease-out-cubic"
+    data-aos-duration="2000" className="container mx-auto my-10">
         <h2 className="font-bold text-5xl text-center mb-6 pt-8">Our Gallery</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
       {

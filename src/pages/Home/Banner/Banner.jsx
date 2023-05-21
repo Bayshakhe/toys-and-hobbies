@@ -1,6 +1,6 @@
 const Banner = () => {
   return (
-    <div className="container mx-auto carousel w-full min-h-[80vh]">
+    <div data-aos="fade-down" className="container mx-auto carousel w-full min-h-[80vh]">
       <div id="slide1" className="carousel-item relative w-full">
         <img
           src="https://images.unsplash.com/photo-1611996575749-79a3a250f948?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"

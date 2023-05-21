@@ -5,7 +5,8 @@ const SingleCategory = ({ data }) => {
   //   console.log(data);
   return (
     <>
-      <div className="card bg-base-100 shadow-xl m-5">
+      <div data-aos="fade-left"
+     data-aos-duration="1500" className="card bg-base-100 shadow-xl m-5">
         <figure>
           <img className=" h-[300px]" src={picture} alt="Toys" />
         </figure>
