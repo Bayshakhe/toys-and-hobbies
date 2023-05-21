@@ -1,35 +1,62 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Link, useLoaderData } from "react-router-dom";
+import { useState, useEffect } from 'react';
 
-function App() {
-  const [count, setCount] = useState(0)
+const AllToys = () => {
+    const data = useLoaderData();
+    const [searchQuery, setSearchQuery] = useState('');
+    const [filteredData, setFilteredData] = useState([]);
+    const [sortOrder, setSortOrder] = useState(null);
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    useEffect(() => {
+        filterData();
+    }, [searchQuery, sortOrder]);
 
-export default App
+    const handleSearchQueryChange = (event) => {
+        setSearchQuery(event.target.value);
+        console.log(event.target.value);
+    };
+
+    const filterData = () => {
+        let filtered = [...data];
+
+        if (searchQuery) {
+            filtered = filtered.filter((item) =>
+                item.toy_name.toLowerCase().includes(searchQuery.toLowerCase())
+            );
+        }
+
+        if (sortOrder === 'ascending') {
+            filtered.sort((a, b) => a.toy_price - b.toy_price);
+        } else if (sortOrder === 'descending') {
+            filtered.sort((a, b) => b.toy_price - a.toy_price);
+        }
+
+        setFilteredData(filtered);
+    };
+
+    const handleSortClick = () => {
+        if (sortOrder === 'ascending') {
+            setSortOrder('descending');
+        } else {
+            setSortOrder('ascending');
+        }
+    };
+
+    return (
+        <div className="w-11/12 mx-auto">
+            <h2 className="font-bold text-4xl text-center mt-12 md:mt-16 underline">All Toys</h2>
+            <div className="text-center my-6 md:my-8">
+                <div className="form-control">
+                    <div className="input-group flex justify-center">
+                        <input value={searchQuery}
+                            onChange={handleSearchQueryChange}
+                            placeholder="Search by name" className="input input-bordered w-full md:w-1/2" />
+                        <button className="btn btn-square">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                        </button>
+                    </div>
+                </div>
+                <button onClick={handleSortClick} className="btn btn-accent mt-4 md:mt-8">Sort {sortOrder === 'ascending' ? 'Descending' : 'Ascending'}</button>
+            </div>
+            )
+            

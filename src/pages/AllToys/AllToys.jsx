@@ -1,22 +1,47 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import RowOfToy from "./RowOfToy";
 import { AuthContext } from "../../providers/AuthProviders";
 
 const AllToys = () => {
   const { toysData } = useContext(AuthContext);
+  const data = toysData;
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
+
+  useEffect(() => {
+    filterData();
+  }, [searchQuery]);
+
+  const handleSearchQueryChange = (event) => {
+    setSearchQuery(event.target.value);
+    // console.log(event.target.value);
+  };
+
+  const filterData = () => {
+    let filtered = [...data];
+
+    if (searchQuery) {
+      filtered = filtered.filter((item) =>
+        item.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    setFilteredData(filtered);
+  };
 
   return (
     <div className="container mx-auto">
       <div className="overflow-x-auto">
-        <div className="w-full md:w-[20%] mx-auto my-5">
-          <label className="input-group ">
+        <div className="form-control">
+          <div className="input flex justify-center">
             <input
-              type="text"
-              placeholder="Search your Toy"
-              className="input input-bordered"
+              value={searchQuery}
+              onChange={handleSearchQueryChange}
+              placeholder="Search by name"
+              className="input input-bordered w-full md:w-1/2"
             />
-            <button className="btn">Search</button>
-          </label>
+          </div>
         </div>
         <table className="table w-full">
           {/* head */}
@@ -32,7 +57,7 @@ const AllToys = () => {
             </tr>
           </thead>
           <tbody>
-            {toysData.map((toy, i) => (
+            {filteredData.map((toy, i) => (
               <RowOfToy key={toy._id} toy={toy} i={i + 1}></RowOfToy>
             ))}
           </tbody>
