@@ -48,6 +48,24 @@ const Header = () => {
       >
         Blogs
       </NavLink>
+      {
+        user ? <div className="md:hidden">
+          <img
+            className="rounded-full w-12 mr-3 mb-2"
+            src={user.photoURL}
+            alt="Profile Image"
+            title={user.displayName}
+          />
+          <Link onClick={handleLogout} className="btn-outline-rose mr-4 pt-3">
+            Log out
+          </Link>
+        </div>
+        :
+        <Link to="/login" className="btn bg-rose-600 mr-4 md:hidden">
+          Log in
+        </Link>
+        
+      }
     </>
   );
   return (
@@ -65,7 +83,7 @@ const Header = () => {
         </Link>
       </div>
       <div className="navbar-center">
-        <div className="hidden lg:flex">
+        <div className="hidden lg:flex px-5">
           <div className="menu menu-horizontal px-1 flex gap-7">
             {navLinkList}
           </div>
@@ -89,7 +107,7 @@ const Header = () => {
           </label>
           <div
             tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-32 right-2"
           >
             {navLinkList}
           </div>
@@ -97,7 +115,7 @@ const Header = () => {
       </div>
 
       {user ? (
-        <div>
+        <div className="hidden md:flex">
           <img
             className="rounded-full w-12 mr-3"
             src={user.photoURL}
@@ -109,7 +127,7 @@ const Header = () => {
           </Link>
         </div>
       ) : (
-        <Link to="/login" className="btn-outline-rose mr-4">
+        <Link to="/login" className="btn-outline-rose mr-4 hidden md:flex">
           Log in
         </Link>
       )}

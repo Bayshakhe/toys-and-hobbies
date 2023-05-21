@@ -8,7 +8,9 @@ const PrivateRoute = ({children}) => {
     // const navigate = useNavigate()
 
     if(loading){
-        return <progress className="progress w-56"></progress>
+        return <div className='text-center m-5'>
+            <progress className="progress w-56"></progress>
+        </div>
     }
     if(user){
         return children

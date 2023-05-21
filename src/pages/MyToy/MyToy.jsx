@@ -8,9 +8,9 @@ import { AuthContext } from "../../providers/AuthProviders";
 
 const MyToy = () => {
   const { user } = useContext(AuthContext);
-  console.log(user);
+  // console.log(user);
   const [myToys, setMyToys] = useState([]);
-  console.log(myToys);
+  // console.log(myToys);
 
   const handleDelete = (id) => {
     Swal.fire({
