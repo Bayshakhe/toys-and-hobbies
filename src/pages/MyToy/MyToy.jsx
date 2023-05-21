@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 // import Swal from 'sweetalert2/dist/sweetalert2.js'
 // import 'sweetalert2/src/sweetalert2.scss'
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
@@ -14,33 +14,29 @@ const MyToy = () => {
 
   const handleDelete = (id) => {
     Swal.fire({
-      title: 'Are you sure?',
+      title: "Are you sure?",
       text: "You won't be able to revert this!",
-      icon: 'warning',
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(`https://toys-and-hobbies-server.vercel.app/toy/${id}`, {
-        method: "DELETE",
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          if (data.deletedCount > 0) {
-            Swal.fire(
-              'Deleted!',
-              'Your file has been deleted.',
-              'success'
-            )
-            const remaining = myToys.filter((toys) => toys._id !== id);
-            setMyToys(remaining);
-          }
+          method: "DELETE",
         })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.deletedCount > 0) {
+              Swal.fire("Deleted!", "Your file has been deleted.", "success");
+              const remaining = myToys.filter((toys) => toys._id !== id);
+              setMyToys(remaining);
+            }
+          });
       }
-    })
+    });
   };
 
   const url = `https://toys-and-hobbies-server.vercel.app/my-toys?email=${user?.email}`;
@@ -52,39 +48,43 @@ const MyToy = () => {
   }, [url]);
 
   const [sortOrder, setSortOrder] = useState(null);
-    useEffect(() => {
-        filterData();
-    }, [sortOrder]);
+  useEffect(() => {
+    filterData();
+  }, [sortOrder]);
 
+  const filterData = () => {
+    let filtered = [...myToys];
 
-    const filterData = () => {
-        let filtered = [...myToys];
+    if (sortOrder === "ascending") {
+      filtered.sort((a, b) => a.price - b.price);
+    } else if (sortOrder === "descending") {
+      filtered.sort((a, b) => b.price - a.price);
+    }
 
-        if (sortOrder === 'ascending') {
-            filtered.sort((a, b) => a.price - b.price);
-        } else if (sortOrder === 'descending') {
-            filtered.sort((a, b) => b.price - a.price);
-        }
+    setMyToys(filtered);
+  };
 
-        setMyToys(filtered);
-    };
-
-    const handleSortClick = () => {
-        if (sortOrder === 'ascending') {
-            setSortOrder('descending');
-        } else {
-            setSortOrder('ascending');
-        }
-    };
+  const handleSortClick = () => {
+    if (sortOrder === "ascending") {
+      setSortOrder("descending");
+    } else {
+      setSortOrder("ascending");
+    }
+  };
 
   return (
     <div className="w-11/12 mx-auto">
-      <h2 className="font-bold text-4xl text-center my-12 md:my-16 underline">
+      <h2 className="font-bold text-4xl text-center mt-12 mb-6  underline">
         My Toys
       </h2>
       <div className="flex justify-center">
-                <button onClick={handleSortClick} className="btn btn-accent mb-4 md:mb-8">Sort {sortOrder === 'ascending' ? 'Descending' : 'Ascending'}</button>
-            </div>
+        <button
+          onClick={handleSortClick}
+          className="btn  mb-4 md:mb-8"
+        >
+          Sort {sortOrder === "ascending" ? "Descending" : "Ascending"}
+        </button>
+      </div>
       <div className="overflow-x-auto mb-8">
         <table className="table w-full">
           {/* head */}
@@ -105,7 +105,7 @@ const MyToy = () => {
               <tr key={toy._id} className="">
                 <th>{index + 1}</th>
                 <th>
-                    <img className="w-16" src={toy.picture} alt="" />
+                  <img className="w-16" src={toy.picture} alt="" />
                 </th>
                 <td>{toy.name}</td>
                 <td>{toy.SellerEmail}</td>

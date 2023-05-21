@@ -34,7 +34,7 @@ const AllToys = () => {
     <div className="container mx-auto">
       <div className="overflow-x-auto">
         <div className="form-control">
-          <div className="input flex justify-center">
+          <div className="input flex justify-center my-5">
             <input
               value={searchQuery}
               onChange={handleSearchQueryChange}
